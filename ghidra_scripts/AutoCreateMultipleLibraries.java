@@ -332,7 +332,7 @@ public class AutoCreateMultipleLibraries extends GhidraScript {
 					return;
 				}
 			}
-			return;
+			//return;
 		}
 		pathelement[MASTER_DEPTH] = fold.getName();
 		// Reaching here, we are at library depth in the folder hierarchy
@@ -407,5 +407,4 @@ public class AutoCreateMultipleLibraries extends GhidraScript {
 			outlog.close();
 		}
 	}
-
 }

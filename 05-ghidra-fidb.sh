@@ -31,15 +31,13 @@ mkdir -p "log"
 rm "log/duplicate_results.txt"
 touch "log/duplicate_results.txt"
 
-cat "lib/${provider}-langids.txt" | while read langid; do 
+cat "lib/${provider}-langids.txt" | while read langid; do
 langid_dots="$(echo "${langid}" | sed 's/:/./g')"
-
-"${ghidra_headless}" "${ghidra_proj}" "${proj}" -noanalysis -scriptPath ghidra_scripts -preScript AutoCreateMultipleLibraries.java log/duplicate_results.txt true fidb "${provider}-${langid_dots}.fidb" "/${provider}" lib/${provider}-common.txt "${langid}"
+#echo ${langid_dots}
+"${ghidra_headless}" "${ghidra_proj}" "${proj}" -noanalysis -scriptPath ghidra_scripts -preScript AutoCreateMultipleLibraries.java log/duplicate_results.txt true fidb "${provider}-${langid_dots}.fidb" "/${provider}" ${libpath}-common.txt "${langid}"
 
 done
 
 # TODO: `Ghidra/Features/FunctionID/data/building_fid.txt` says the included .fidb files were cleaned up with the follow two scripts:
-echo "Please check the generated fidb/${os_arch}.fidb and manually run RemoveFunctions.java on it."
+echo "Please check the generated fidb/${xx}/${langid_dots}.fidb and manually run RemoveFunctions.java on it."
 echo "Then run RepackFid.java to export it for distribution."
-
-
